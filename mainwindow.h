@@ -23,6 +23,8 @@ private slots:
    void newPack();
    void on_spinBox_Amount_editingFinished();
 
+   void on_lineEdit_ERA_Number_editingFinished();
+
 private:
     Ui::MainWindow *ui;
 
