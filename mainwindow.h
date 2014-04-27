@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QFile>
+#include <QTableWidgetItem>
 
 namespace Ui {
     class MainWindow;
@@ -14,7 +16,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
    ~MainWindow();
-
+   void logStart();
 
 private slots:
    void on_lineEdit_Cur_Pack_editingFinished();
@@ -29,6 +31,7 @@ private:
     Ui::MainWindow *ui;
 
     QString qsTemp;
+    QString qsLogRow;
     QString qsSoundNewAmount;
     QString qsSoundNewItemError;
     QString qsSoundNewItemOk;
@@ -36,6 +39,7 @@ private:
     QString qsSoundStartUp;
     QString qsSoundPackComplet;
 
+    QFile logFile;
     int tableRow;
     int leftItemsCount;
 };
