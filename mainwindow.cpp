@@ -7,16 +7,28 @@
 #include <QTime>
 #include <QDate>
 #include <QDateTime>
+#include <QSettings>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
    ui->setupUi(this);
+   QSettings *appSettings;
+   appSettings = new QSettings ("settings.ini", QSettings::IniFormat);
+   qsPackBegin = appSettings->value("Pack_begin","VOL").toString();
+   qsItemBegin = appSettings->value("Item_begin","P").toString();
+   delete appSettings;
+
+   qDebug() << "qsPackBegin" << qsPackBegin << "qsItemBegin" << qsItemBegin ;
+
    ui->groupBox_Output->setDisabled(true);
    ui->lineEdit_Cur_Pack->setCursorPosition(0);
+   ui->label_Cur_Pack->setText("Current pack ("+qsPackBegin+")");
    ui->spinBox_Amount->setDisabled(true);
    ui->spinBox_Amount->clear();
    ui->lineEdit_Cur_Item->setDisabled(true);
+   ui->label_Cur_Item->setText("Current item ("+qsItemBegin+")");
    ui->spinBox_Left->setDisabled(true);
    ui->lineEdit_ERA_Number->setDisabled(true);
    tableRow = 0;
@@ -30,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
    qsSoundPackComplet  = "sounds/PackComplet.wav";
    logStart();
 
-   QSound::play(qsSoundStartUp);
+  QSound::play(qsSoundStartUp);
 }
 
 MainWindow::~MainWindow()

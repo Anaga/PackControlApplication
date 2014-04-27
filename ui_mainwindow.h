@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu 24. Apr 23:53:40 2014
+** Created: Mon 28. Apr 00:16:21 2014
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -79,7 +79,8 @@ public:
         lineEdit_Cur_Pack = new QLineEdit(groupBox_Input);
         lineEdit_Cur_Pack->setObjectName(QString::fromUtf8("lineEdit_Cur_Pack"));
         lineEdit_Cur_Pack->setFont(font);
-        lineEdit_Cur_Pack->setPlaceholderText(QString::fromUtf8("VOL"));
+        lineEdit_Cur_Pack->setMaxLength(50);
+        lineEdit_Cur_Pack->setPlaceholderText(QString::fromUtf8(""));
 
         gridLayout->addWidget(lineEdit_Cur_Pack, 0, 1, 1, 1);
 
@@ -105,7 +106,8 @@ public:
         lineEdit_Cur_Item = new QLineEdit(groupBox_Input);
         lineEdit_Cur_Item->setObjectName(QString::fromUtf8("lineEdit_Cur_Item"));
         lineEdit_Cur_Item->setFont(font);
-        lineEdit_Cur_Item->setInputMask(QString::fromUtf8("ddddddddddddddddddd; "));
+        lineEdit_Cur_Item->setInputMask(QString::fromUtf8(""));
+        lineEdit_Cur_Item->setMaxLength(50);
 
         gridLayout->addWidget(lineEdit_Cur_Item, 1, 1, 2, 1);
 
@@ -131,6 +133,7 @@ public:
         lineEdit_ERA_Number = new QLineEdit(groupBox_Input);
         lineEdit_ERA_Number->setObjectName(QString::fromUtf8("lineEdit_ERA_Number"));
         lineEdit_ERA_Number->setFont(font);
+        lineEdit_ERA_Number->setMaxLength(50);
 
         gridLayout->addWidget(lineEdit_ERA_Number, 3, 1, 1, 1);
 
@@ -198,11 +201,11 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "PackControlApplication (10-04-2014) V0.1", 0, QApplication::UnicodeUTF8));
         groupBox_Input->setTitle(QString());
         label_Cur_Pack->setText(QApplication::translate("MainWindow", "Current pack ", 0, QApplication::UnicodeUTF8));
-        lineEdit_Cur_Pack->setInputMask(QApplication::translate("MainWindow", "ddddddddddddddddd; ", 0, QApplication::UnicodeUTF8));
+        lineEdit_Cur_Pack->setInputMask(QString());
         lineEdit_Cur_Pack->setText(QString());
         label_Amount->setText(QApplication::translate("MainWindow", "Amount", 0, QApplication::UnicodeUTF8));
         label_Cur_Item->setText(QApplication::translate("MainWindow", "Current item", 0, QApplication::UnicodeUTF8));
-        lineEdit_Cur_Item->setPlaceholderText(QApplication::translate("MainWindow", "P", 0, QApplication::UnicodeUTF8));
+        lineEdit_Cur_Item->setPlaceholderText(QString());
         label_Left->setText(QApplication::translate("MainWindow", "Left", 0, QApplication::UnicodeUTF8));
         label_ERA_Number->setText(QApplication::translate("MainWindow", "ERA number", 0, QApplication::UnicodeUTF8));
         groupBox_Output->setTitle(QString());

@@ -39,6 +39,9 @@ private:
     QString qsSoundStartUp;
     QString qsSoundPackComplet;
 
+    QString qsPackBegin;
+    QString qsItemBegin;
+
     QFile logFile;
     int tableRow;
     int leftItemsCount;

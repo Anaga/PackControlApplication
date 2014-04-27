@@ -45,13 +45,16 @@
           </font>
          </property>
          <property name="inputMask">
-          <string>ddddddddddddddddd; </string>
+          <string/>
          </property>
          <property name="text">
           <string/>
          </property>
+         <property name="maxLength">
+          <number>50</number>
+         </property>
          <property name="placeholderText">
-          <string notr="true">VOL</string>
+          <string notr="true"/>
          </property>
         </widget>
        </item>
@@ -107,10 +110,13 @@
           </font>
          </property>
          <property name="inputMask">
-          <string notr="true">ddddddddddddddddddd; </string>
+          <string notr="true"/>
+         </property>
+         <property name="maxLength">
+          <number>50</number>
          </property>
          <property name="placeholderText">
-          <string>P</string>
+          <string/>
          </property>
         </widget>
        </item>
@@ -164,6 +170,9 @@
            <weight>75</weight>
            <bold>true</bold>
           </font>
+         </property>
+         <property name="maxLength">
+          <number>50</number>
          </property>
         </widget>
        </item>
