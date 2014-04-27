@@ -110,7 +110,7 @@ void MainWindow::on_lineEdit_Cur_Item_editingFinished()
    {
       qsLogRow.append(newItemERA->text()).append(";\n");
       logFileOut <<qsLogRow;
-      qDebug() << "qsLogRow Not" << qsLogRow;
+      //qDebug() << "qsLogRow Not" << qsLogRow;
       qsLogRow.clear();
    }
 }
@@ -163,7 +163,7 @@ void MainWindow::on_lineEdit_ERA_Number_editingFinished()
 
    qsLogRow.append(qsTemp).append(";\n");
    logFileOut <<qsLogRow;
-   qDebug() << "qsLogRow ERA" << qsLogRow;
+   //qDebug() << "qsLogRow ERA" << qsLogRow;
    qsLogRow.clear();
 
    ui->lineEdit_ERA_Number->clear();
@@ -173,13 +173,18 @@ void MainWindow::on_lineEdit_ERA_Number_editingFinished()
 
    ui->lineEdit_Cur_Pack->clear();
    ui->lineEdit_Cur_Pack->setEnabled(true);
-   ui->lineEdit_Cur_Pack->setFocus();  
+   ui->lineEdit_Cur_Pack->setFocus();
+   logFile.close();
+   logStart();
 }
 
 void MainWindow::logStart(){
    QDate curDate = QDate::currentDate();
-   qsTemp = curDate.toString("logs/Log-yyyy-MM-dd.txt");
+   bool fileExist;
+   qsTemp = curDate.toString("logs/Log-yyyy-MM-dd.csv");
    logFile.setFileName(qsTemp);
+
+   fileExist = logFile.exists();
    if (!logFile.open(QIODevice::Append | QIODevice::Text)){
       QMessageBox::StandardButton info;
       info = QMessageBox::information(
@@ -188,11 +193,13 @@ void MainWindow::logStart(){
                "Can't create file with name " +qsTemp,
                QMessageBox::Ok);
       }
-   QTextStream logFileOut(&logFile);
-   for (int i=0; i<ui->tableWidget->columnCount(); i++){
-      qsTemp = (ui->tableWidget->horizontalHeaderItem(i))->text();
-      logFileOut << qsTemp << ";\t";
+   if (!fileExist) {
+      QTextStream logFileOut(&logFile);
+      for (int i=0; i<ui->tableWidget->columnCount(); i++){
+         qsTemp = (ui->tableWidget->horizontalHeaderItem(i))->text();
+         logFileOut << qsTemp << ";\t";
+      }
+      logFileOut << "\n";
+      logFile.flush();
    }
-   logFileOut << "\n";
-   logFile.flush();
 }
