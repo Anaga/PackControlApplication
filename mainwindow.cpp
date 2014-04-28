@@ -8,27 +8,50 @@
 #include <QDate>
 #include <QDateTime>
 #include <QSettings>
+#include <QRegExpValidator>
+#include <QRegExp>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
    ui->setupUi(this);
-   QSettings *appSettings;
+
+   int min_numbers=2;
+   int max_numbers=20;
+   bool bOK;
+   QSettings *appSettings;   
    appSettings = new QSettings ("settings.ini", QSettings::IniFormat);
    qsPackBegin = appSettings->value("Pack_begin","VOL").toString();
+   min_numbers = appSettings->value("Min_numbers",2).toInt(&bOK);
+   max_numbers = appSettings->value("Max_numbers",20).toInt(&bOK);
    qsItemBegin = appSettings->value("Item_begin","P").toString();
    delete appSettings;
 
    qDebug() << "qsPackBegin" << qsPackBegin << "qsItemBegin" << qsItemBegin ;
+// ;# Start from VOL and containt for 2 to 5 digits
+   qsTemp = "\\d{%1,%2}";
+   qsTemp = qsTemp.arg(min_numbers).arg(max_numbers);
 
+   ui->label_Cur_Pack->setText("Current pack ("+qsPackBegin+")");
+   ui->label_Cur_Item->setText("Current item ("+qsItemBegin+")");
+
+   qsPackBegin.append(qsTemp);
+   qsItemBegin.append(qsTemp);
+   QRegExp rxP(qsPackBegin);
+   QValidator *validP = new QRegExpValidator(rxP, this);
+
+   QRegExp rxI(qsItemBegin);
+   QValidator *validI = new QRegExpValidator(rxI, this);
    ui->groupBox_Output->setDisabled(true);
    ui->lineEdit_Cur_Pack->setCursorPosition(0);
-   ui->label_Cur_Pack->setText("Current pack ("+qsPackBegin+")");
+   ui->lineEdit_Cur_Pack->setValidator(validP);
+
+   ui->lineEdit_Cur_Item->setValidator(validI);
    ui->spinBox_Amount->setDisabled(true);
    ui->spinBox_Amount->clear();
    ui->lineEdit_Cur_Item->setDisabled(true);
-   ui->label_Cur_Item->setText("Current item ("+qsItemBegin+")");
+
    ui->spinBox_Left->setDisabled(true);
    ui->lineEdit_ERA_Number->setDisabled(true);
    tableRow = 0;
