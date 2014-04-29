@@ -1,0 +1,18 @@
+Time;	Current pack;	Current item;	Check;	ERA;	
+23:49:41;	VOL444;	I444;	OK;	4;
+23:57:17;	VOL34;	I34;	OK;	 ;
+23:57:30;	VOL34;	I456;	Error;	 ;
+23:58:02;	VOL34;	I34;	OK;	Erra456;
+23:58:51;	VOL45;	I45;	OK;	 ;
+23:58:55;	VOL45;	I46;	Error;	 ;
+23:58:57;	VOL45;	I45;	OK;	 ;
+23:59:01;	VOL45;	I45;	OK;	Errraa;
+23:59:29;	VOL23;	I234;	Error;	 ;
+23:59:31;	VOL23;	I23;	OK;	 ;
+23:59:33;	VOL23;	I23;	OK;	iodfugo;
+23:59:56;	VOL345;	I33;	Error;	 ;
+23:59:58;	VOL345;	I345;	OK;	 ;
+00:00:00;	VOL345;	I345;	OK;	 ;
+00:00:02;	VOL345;	I345;	OK;	 ;
+00:00:05;	VOL345;	I345;	OK;	 ;
+00:00:08;	VOL345;	I345;	OK;	EraaI345;

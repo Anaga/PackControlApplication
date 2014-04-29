@@ -10,6 +10,8 @@
 #include <QSettings>
 #include <QRegExpValidator>
 #include <QRegExp>
+#include <QBrush>
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -122,8 +124,14 @@ void MainWindow::on_lineEdit_Cur_Item_editingFinished()
    qsLogRow.append(newItemItem->text()).append(";\t");
    tableRow++;
 
+   QBrush redBrush(QColor("red"));
+   QBrush greenBrush(QColor("green"));
+   QBrush blackBrush(QColor("black"));
+
    if (chek_Pack_and_Item(ui->lineEdit_Cur_Pack->text(),qsTemp))
    {
+      newItemOk->setBackground(greenBrush);
+      newItemOk->setForeground(blackBrush);
       ui->tableWidget->setItem(0, 3, newItemOk);
       qsLogRow.append(newItemOk->text()).append(";\t");
       leftItemsCount--;
@@ -132,6 +140,8 @@ void MainWindow::on_lineEdit_Cur_Item_editingFinished()
 
    }else
    {
+      newItemError->setBackground(redBrush);
+      newItemError->setForeground(blackBrush);
       ui->tableWidget->setItem(0, 3, newItemError);
       qsLogRow.append(newItemError->text()).append(";\t");
       QSound::play(qsSoundNewItemError);
