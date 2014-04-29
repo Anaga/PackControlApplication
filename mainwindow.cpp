@@ -144,7 +144,15 @@ void MainWindow::on_lineEdit_Cur_Item_editingFinished()
       newItemError->setForeground(blackBrush);
       ui->tableWidget->setItem(0, 3, newItemError);
       qsLogRow.append(newItemError->text()).append(";\t");
-      QSound::play(qsSoundNewItemError);
+
+      MissDialog *d = new MissDialog;
+      int retVal=0;
+      do {
+         QSound::play(qsSoundNewItemError);
+         retVal = d->exec();
+         qDebug() <<"d->exec()"<<retVal;
+      }while (retVal==0);
+
    }
    ui->tableWidget->setItem(0, 4, newItemERA);
 

@@ -11,8 +11,16 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    missdialog.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    missdialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    missdialog.ui
+
+
+
+
+

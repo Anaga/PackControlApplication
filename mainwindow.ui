@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>PackControlApplication (10-04-2014) V0.1</string>
+   <string>PackControlApplication (30-04-2014) V1.0</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QVBoxLayout" name="verticalLayout">

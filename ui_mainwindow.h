@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue 29. Apr 23:54:36 2014
+** Created: Wed 30. Apr 01:32:55 2014
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -198,7 +198,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "PackControlApplication (10-04-2014) V0.1", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "PackControlApplication (30-04-2014) V1.0", 0, QApplication::UnicodeUTF8));
         groupBox_Input->setTitle(QString());
         label_Cur_Pack->setText(QApplication::translate("MainWindow", "Current pack ", 0, QApplication::UnicodeUTF8));
         lineEdit_Cur_Pack->setInputMask(QString());

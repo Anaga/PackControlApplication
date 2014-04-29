@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QFile>
 #include <QTableWidgetItem>
+#include "missdialog.h"
 
 namespace Ui {
     class MainWindow;
