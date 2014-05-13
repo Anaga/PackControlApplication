@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed 30. Apr 01:32:55 2014
+** Created: Tue 13. May 11:37:13 2014
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -21,6 +21,7 @@
 #include <QtGui/QLabel>
 #include <QtGui/QLineEdit>
 #include <QtGui/QMainWindow>
+#include <QtGui/QPushButton>
 #include <QtGui/QSpinBox>
 #include <QtGui/QTableWidget>
 #include <QtGui/QVBoxLayout>
@@ -45,6 +46,7 @@ public:
     QSpinBox *spinBox_Left;
     QLabel *label_ERA_Number;
     QLineEdit *lineEdit_ERA_Number;
+    QPushButton *pushButton_Reset;
     QGroupBox *groupBox_Output;
     QHBoxLayout *horizontalLayout_2;
     QTableWidget *tableWidget;
@@ -54,6 +56,11 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(798, 667);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -137,6 +144,12 @@ public:
 
         gridLayout->addWidget(lineEdit_ERA_Number, 3, 1, 1, 1);
 
+        pushButton_Reset = new QPushButton(groupBox_Input);
+        pushButton_Reset->setObjectName(QString::fromUtf8("pushButton_Reset"));
+        pushButton_Reset->setFont(font);
+
+        gridLayout->addWidget(pushButton_Reset, 3, 3, 1, 3);
+
 
         verticalLayout->addWidget(groupBox_Input);
 
@@ -198,7 +211,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "PackControlApplication (30-04-2014) V1.0", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "PackControlApplication (13-05-2014) V1.2", 0, QApplication::UnicodeUTF8));
         groupBox_Input->setTitle(QString());
         label_Cur_Pack->setText(QApplication::translate("MainWindow", "Current pack ", 0, QApplication::UnicodeUTF8));
         lineEdit_Cur_Pack->setInputMask(QString());
@@ -208,6 +221,7 @@ public:
         lineEdit_Cur_Item->setPlaceholderText(QString());
         label_Left->setText(QApplication::translate("MainWindow", "Left", 0, QApplication::UnicodeUTF8));
         label_ERA_Number->setText(QApplication::translate("MainWindow", "ERA number", 0, QApplication::UnicodeUTF8));
+        pushButton_Reset->setText(QApplication::translate("MainWindow", "Reset all data", 0, QApplication::UnicodeUTF8));
         groupBox_Output->setTitle(QString());
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Time", 0, QApplication::UnicodeUTF8));

@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
    qDebug() << "qsPackBegin" << qsPackBegin << "qsItemBegin" << qsItemBegin ;
 // ;# Start from VOL and containt for 2 to 5 digits
-   qsTemp = "\\d{%1,%2}";
+   qsTemp = "\\d[A-Z]{0,1}\\d{%1,%2}";
    qsTemp = qsTemp.arg(min_numbers).arg(max_numbers);
 
    ui->label_Cur_Pack->setText("Current pack ("+qsPackBegin+")");
@@ -80,6 +80,7 @@ void MainWindow::on_lineEdit_Cur_Pack_editingFinished()
 {
    qsTemp = ui->lineEdit_Cur_Pack->text();
    if (qsTemp.isEmpty()) return;
+   qsPackValue = qsTemp;
    ui->spinBox_Amount->setEnabled(true);
    ui->spinBox_Amount->setFocus();
    ui->lineEdit_Cur_Pack->setDisabled(true);
@@ -103,6 +104,7 @@ void MainWindow::on_lineEdit_Cur_Item_editingFinished()
    QTextStream logFileOut(&logFile);
    qsTemp = ui->lineEdit_Cur_Item->text();
    if (qsTemp.isEmpty()) return;
+   qsItemValue = qsTemp;
    ui->lineEdit_Cur_Item->clear();
    QString qsTime = QTime::currentTime().toString("HH:mm:ss");
    QTableWidgetItem *newItemTime = new QTableWidgetItem(qsTime);
@@ -207,8 +209,23 @@ void MainWindow::newPack()
 
 void MainWindow::on_lineEdit_ERA_Number_editingFinished()
 {
-   QTextStream logFileOut(&logFile);
    qsTemp = ui->lineEdit_ERA_Number->text();
+
+   if ((qsTemp == qsPackValue) || (qsTemp == qsItemValue)) {
+      QString qsError = "ERA number can't be '%1' or '%2'";
+      qsError = qsError.arg(qsPackValue).arg(qsItemValue);
+      QSound::play(qsSoundNewItemError);
+      QMessageBox::StandardButton infoBox;
+      ui->lineEdit_ERA_Number->clear();
+      QSound::play(qsSoundPackComplet);
+      infoBox = QMessageBox::warning(
+               this, "ERA number wrong!",
+               qsError,QMessageBox::Ok);
+      return;
+   }
+
+   QTextStream logFileOut(&logFile);
+
    if (qsTemp.isEmpty()) return;
    QTableWidgetItem *newItemERA = new QTableWidgetItem(qsTemp);
    ui->tableWidget->setItem(0, 4, newItemERA);
@@ -255,4 +272,19 @@ void MainWindow::logStart(){
       logFileOut << "\n";
       logFile.flush();
    }
+}
+
+void MainWindow::on_pushButton_Reset_clicked()
+{
+   ui->lineEdit_ERA_Number->clear();
+   ui->lineEdit_ERA_Number->setDisabled(true);
+
+   ui->spinBox_Amount->clear();
+
+   ui->lineEdit_Cur_Item->clear();
+   ui->lineEdit_Cur_Item->setDisabled(true);
+
+   ui->lineEdit_Cur_Pack->clear();
+   ui->lineEdit_Cur_Pack->setEnabled(true);
+   ui->lineEdit_Cur_Pack->setFocus();
 }

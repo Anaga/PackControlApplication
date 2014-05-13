@@ -28,6 +28,8 @@ private slots:
 
    void on_lineEdit_ERA_Number_editingFinished();
 
+   void on_pushButton_Reset_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -42,6 +44,10 @@ private:
 
     QString qsPackBegin;
     QString qsItemBegin;
+
+    QString qsPackValue;
+    QString qsItemValue;
+
 
     QFile logFile;
     int tableRow;
