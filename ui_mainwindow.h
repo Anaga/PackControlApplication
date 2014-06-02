@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue 13. May 11:37:13 2014
+** Created: Tue 3. Jun 00:07:49 2014
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -61,6 +61,9 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/icons/package.ico"), QSize(), QIcon::Normal, QIcon::Off);
+        MainWindow->setWindowIcon(icon);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         verticalLayout = new QVBoxLayout(centralWidget);
@@ -190,6 +193,11 @@ public:
         tableWidget->setHorizontalHeaderItem(4, __qtablewidgetitem4);
         tableWidget->setObjectName(QString::fromUtf8("tableWidget"));
         tableWidget->setFont(font);
+        tableWidget->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+        tableWidget->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tableWidget->setProperty("showDropIndicator", QVariant(false));
+        tableWidget->setDragDropOverwriteMode(false);
         tableWidget->setAlternatingRowColors(true);
         tableWidget->setWordWrap(true);
         tableWidget->setCornerButtonEnabled(true);
@@ -211,7 +219,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "PackControlApplication (13-05-2014) V1.2", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "PackControlApplication (02-06-2014) V1.3", 0, QApplication::UnicodeUTF8));
         groupBox_Input->setTitle(QString());
         label_Cur_Pack->setText(QApplication::translate("MainWindow", "Current pack ", 0, QApplication::UnicodeUTF8));
         lineEdit_Cur_Pack->setInputMask(QString());

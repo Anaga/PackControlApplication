@@ -41,13 +41,14 @@ private:
     QString qsSoundNewPack;
     QString qsSoundStartUp;
     QString qsSoundPackComplet;
+    QString qsSoundEraNumb;
 
     QString qsPackBegin;
     QString qsItemBegin;
+    QString qsEraNBegin;
 
     QString qsPackValue;
     QString qsItemValue;
-
 
     QFile logFile;
     int tableRow;

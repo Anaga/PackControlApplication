@@ -20,6 +20,13 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     missdialog.ui
 
+RESOURCES += \
+    res.qrc
+
+win32:RC_FILE += res.rc
+
+
+
 
 
 

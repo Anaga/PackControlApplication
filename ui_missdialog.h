@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'missdialog.ui'
 **
-** Created: Wed 30. Apr 00:37:50 2014
+** Created: Tue 3. Jun 00:07:49 2014
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

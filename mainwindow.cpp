@@ -28,28 +28,38 @@ MainWindow::MainWindow(QWidget *parent) :
    min_numbers = appSettings->value("Min_numbers",2).toInt(&bOK);
    max_numbers = appSettings->value("Max_numbers",20).toInt(&bOK);
    qsItemBegin = appSettings->value("Item_begin","P").toString();
+   qsEraNBegin = appSettings->value("EraN_begin","A").toString();
    delete appSettings;
 
-   qDebug() << "qsPackBegin" << qsPackBegin << "qsItemBegin" << qsItemBegin ;
-// ;# Start from VOL and containt for 2 to 5 digits
+   qDebug() << "qsPackBegin" << qsPackBegin << "qsItemBegin" << qsItemBegin << "qsEraNBegin" << qsEraNBegin ;
+
    qsTemp = "\\d[A-Z]{0,1}\\d{%1,%2}";
    qsTemp = qsTemp.arg(min_numbers).arg(max_numbers);
 
    ui->label_Cur_Pack->setText("Current pack ("+qsPackBegin+")");
    ui->label_Cur_Item->setText("Current item ("+qsItemBegin+")");
+   ui->label_ERA_Number->setText("ERA number ("+qsEraNBegin+")");
 
-   qsPackBegin.append(qsTemp);
-   qsItemBegin.append(qsTemp);
+   qsPackBegin.append(qsTemp);   
    QRegExp rxP(qsPackBegin);
    QValidator *validP = new QRegExpValidator(rxP, this);
 
+   qsItemBegin.append(qsTemp);
    QRegExp rxI(qsItemBegin);
    QValidator *validI = new QRegExpValidator(rxI, this);
-   ui->groupBox_Output->setDisabled(true);
+
+   qsEraNBegin.append(qsTemp);
+   QRegExp rxE(qsEraNBegin);
+   QValidator *validE = new QRegExpValidator(rxE, this);
+   //ui->groupBox_Output->setDisabled(true);
+   //ui->tableWidget->
    ui->lineEdit_Cur_Pack->setCursorPosition(0);
    ui->lineEdit_Cur_Pack->setValidator(validP);
 
    ui->lineEdit_Cur_Item->setValidator(validI);
+
+   ui->lineEdit_ERA_Number->setValidator(validE);
+
    ui->spinBox_Amount->setDisabled(true);
    ui->spinBox_Amount->clear();
    ui->lineEdit_Cur_Item->setDisabled(true);
@@ -65,6 +75,7 @@ MainWindow::MainWindow(QWidget *parent) :
    qsSoundNewPack      = "sounds/NewPack.wav";
    qsSoundStartUp      = "sounds/StartUp.wav";
    qsSoundPackComplet  = "sounds/PackComplet.wav";
+   qsSoundEraNumb      = "sounds/EraNumb.wav";
    logStart();
 
   QSound::play(qsSoundStartUp);
@@ -202,6 +213,7 @@ bool MainWindow::chek_Pack_and_Item(QString qsPack, QString qsItem)
 
 void MainWindow::newPack()
 {
+   QSound::play(qsSoundEraNumb);
    ui->lineEdit_Cur_Item->setDisabled(true);
    ui->lineEdit_ERA_Number->setEnabled(true);
    ui->lineEdit_ERA_Number->setFocus();
@@ -217,7 +229,6 @@ void MainWindow::on_lineEdit_ERA_Number_editingFinished()
       QSound::play(qsSoundNewItemError);
       QMessageBox::StandardButton infoBox;
       ui->lineEdit_ERA_Number->clear();
-      QSound::play(qsSoundPackComplet);
       infoBox = QMessageBox::warning(
                this, "ERA number wrong!",
                qsError,QMessageBox::Ok);
@@ -233,19 +244,12 @@ void MainWindow::on_lineEdit_ERA_Number_editingFinished()
 
    qsLogRow.append(qsTemp).append(";\n");
    logFileOut <<qsLogRow;
-   //qDebug() << "qsLogRow ERA" << qsLogRow;
    qsLogRow.clear();
 
-   ui->lineEdit_ERA_Number->clear();
-   ui->lineEdit_ERA_Number->setDisabled(true);
-
-   ui->spinBox_Amount->clear();
-
-   ui->lineEdit_Cur_Pack->clear();
-   ui->lineEdit_Cur_Pack->setEnabled(true);
-   ui->lineEdit_Cur_Pack->setFocus();
    logFile.close();
    logStart();
+
+   ui->pushButton_Reset->click();
 }
 
 void MainWindow::logStart(){
@@ -276,6 +280,7 @@ void MainWindow::logStart(){
 
 void MainWindow::on_pushButton_Reset_clicked()
 {
+   QSound::play(qsSoundPackComplet);
    ui->lineEdit_ERA_Number->clear();
    ui->lineEdit_ERA_Number->setDisabled(true);
 
